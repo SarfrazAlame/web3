@@ -23,3 +23,11 @@ const result = nacl.sign.detached.verify(
 )
 
 console.log(result)
+
+//////////////////////////////////////////////// generating 12 word phrase
+
+import {generateMnemonic, validateMnemonic} from "bip39"
+
+const words = generateMnemonic(12)
+
+console.log(words)

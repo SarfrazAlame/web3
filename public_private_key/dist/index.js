@@ -1,20 +1,25 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+// import { Keypair } from "@solana/web3.js"
+// import nacl from "tweetnacl"
 Object.defineProperty(exports, "__esModule", { value: true });
-const web3_js_1 = require("@solana/web3.js");
-const tweetnacl_1 = __importDefault(require("tweetnacl"));
-// Generate a new Keypair
-const keypair = web3_js_1.Keypair.generate();
-// Extract the public and private key
-const publicKey = keypair.publicKey.toBytes();
-const secretKey = keypair.secretKey;
-// Display the keys
-console.log("Public Key", publicKey);
-console.log("Private Key (Secret key)", secretKey);
-// Convert message "Hello World" to a Uint8Array
-const message = new TextEncoder().encode("Hello World");
-const signature = tweetnacl_1.default.sign.detached(message, secretKey);
-const result = tweetnacl_1.default.sign.detached.verify(message, signature, keypair.publicKey.toBytes());
-console.log(result);
+// // Generate a new Keypair
+// const keypair = Keypair.generate()
+// // Extract the public and private key
+// const publicKey = keypair.publicKey.toBytes();
+// const secretKey = keypair.secretKey;
+// // Display the keys
+// console.log("Public Key", publicKey);
+// console.log("Private Key (Secret key)", secretKey);
+// // Convert message "Hello World" to a Uint8Array
+// const message = new TextEncoder().encode("Hello World");
+// const signature = nacl.sign.detached(message, secretKey);
+// const result = nacl.sign.detached.verify(
+//     message,
+//     signature,
+//     keypair.publicKey.toBytes(),
+// )
+// console.log(result)
+////////////////////////////////////////////////// generating 12 word phrase
+const bip39_1 = require("bip39");
+const words = (0, bip39_1.generateMnemonic)(12);
+console.log(words);
