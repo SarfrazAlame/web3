@@ -4,7 +4,7 @@ import { Wallet, HDNodeWallet } from "ethers";
 
 export const EthWallet = ({mnemonic}:any) => {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [addresses, setAddresses] = useState([]);
+    const [addresses, setAddresses] = useState<any>([]);
 
     return (
         <div>

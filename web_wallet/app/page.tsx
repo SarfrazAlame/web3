@@ -9,6 +9,7 @@ import { EthWallet } from "./EthWallet";
 
 export default function Home() {
   const [mnemonic, setMnemonic] = useState("");
+  console.log(mnemonic)
   return (
 
     <div>
@@ -29,6 +30,7 @@ export default function Home() {
 function SolanaWallet({ mnemonic }: any) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [publicKeys, setPublicKeys] = useState<any>([]);
+
 
   return <div>
     <button onClick={function () {
