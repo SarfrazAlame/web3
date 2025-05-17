@@ -5,7 +5,7 @@ import { useState } from "react";
 export default function Airdrop() {
     const wallet = useWallet()
     const { connection } = useConnection()
-    const [num,setNum] = useState<string>('')
+    const [num, setNum] = useState<string>('')
 
     async function sendAirdropUser() {
         await connection.requestAirdrop(wallet.publicKey as PublicKey, Number(num) * 1000000000)
@@ -15,7 +15,7 @@ export default function Airdrop() {
     return (
         <div>
             you address {wallet.publicKey?.toString()}
-            <input  type="text" placeholder="Amount"  onChange={e=>setNum(e.target.value)}></input>
+            <input type="text" placeholder="Amount" onChange={e => setNum(e.target.value)}></input>
             <button onClick={sendAirdropUser}>Send Airdrop</button>
         </div>
     )
