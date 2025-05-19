@@ -1,7 +1,9 @@
 import {
   createInitializeAccount2Instruction,
+  createInitializeMintInstruction,
   getMinimumBalanceForRentExemptMint,
   MINT_SIZE,
+  TOKEN_PROGRAM_ID,
 } from "@solana/spl-token";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { Keypair } from "@solana/web3.js";
@@ -23,23 +25,28 @@ export function TokenLaunchpad() {
 
     const transaction = new Transaction().add(
       SystemProgram.createAccount({
-        fromPubkey: payer.publicKey,
+        fromPubkey: wallet.publicKey,
         newAccountPubkey: keypair.publicKey,
         space: MINT_SIZE,
         lamports,
-        programId,
+        programId: TOKEN_PROGRAM_ID,
       }),
-      createInitializeAccount2Instruction(
+      createInitializeMintInstruction(
         keypair.publicKey,
-        decimals,
-        mintAuthority,
-        freezeAuthority,
-        programId
+        6,
+        wallet.publicKey,
+        wallet.publicKey,
+        TOKEN_PROGRAM_ID
       )
     );
 
+    transaction.feePayer = wallet.publicKey;
+    const recentBlockhash = await connection.getLatestBlockhash();
+    transaction.recentBlockhash = recentBlockhash.blockhash;
+
     transaction.partialSign(keypair);
-    await wallet.signTransaction(transaction);
+    let response = await wallet.sendTransaction(transaction, connection);
+    console.log(response);
   }
 
   return (
