@@ -15,6 +15,7 @@ import { clusterApiUrl } from "@solana/web3.js";
 import RequestAirDrop from "./RequestAirDrop";
 import ShowBalance from "./ShowBalance";
 import SendToken from "./SendToken";
+import SignMessage from "./SignMessage";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -41,7 +42,8 @@ function App() {
           >
             {/* <RequestAirDrop /> */}
             {/* <ShowBalance /> */}
-            <SendToken />
+            {/* <SendToken /> */}
+            <SignMessage/>
           </div>
 
           {/* <WalletDisconnectButton /> */}
