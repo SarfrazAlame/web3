@@ -43,7 +43,7 @@ function App() {
             {/* <RequestAirDrop /> */}
             {/* <ShowBalance /> */}
             {/* <SendToken /> */}
-            <SignMessage/>
+            <SignMessage />
           </div>
 
           {/* <WalletDisconnectButton /> */}
