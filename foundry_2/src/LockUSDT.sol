@@ -20,10 +20,10 @@ contract LockUSDT {
 
     }
 
-
     function withdraw() public {
         uint256 remainingAmount = pendingBalances[msg.sender];
         IERC20(usdtAddress).transfer(msg.sender, remainingAmount);
         pendingBalances[msg.sender] = 0;
     }
 }
+ 

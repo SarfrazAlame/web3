@@ -40,10 +40,10 @@ function App() {
               justifyContent: "center",
             }}
           >
-            {/* <RequestAirDrop /> */}
-            {/* <ShowBalance /> */}
-            {/* <SendToken /> */}
-            <SignMessage />
+            <RequestAirDrop />
+            {/* <ShowBalance />
+            <SendToken />
+            <SignMessage /> */}
           </div>
 
           {/* <WalletDisconnectButton /> */}
