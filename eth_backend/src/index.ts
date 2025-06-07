@@ -19,7 +19,7 @@ async function main() {
     while (1) {
         await pollBlock(currentBlock)
     }
-}
+}   
 
-pollBlock(21493826)
+pollBlock(22654193)
 

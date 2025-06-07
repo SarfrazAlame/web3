@@ -22,4 +22,10 @@ function pollBlock(blockNumber) {
         console.log(logs);
     });
 }
-pollBlock(21493826);
+// async function main() {
+//     const currentBlock = 1;
+//     while (1) {
+//         await pollBlock(currentBlock)
+//     }
+// }
+pollBlock(22654193);

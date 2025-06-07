@@ -33,7 +33,7 @@ export function AllowUSDT() {
       }
       ],
       functionName: 'approve',
-      args: ["0x2966473D85A76A190697B5b9b66b769436EFE8e5", BigInt(1)],
+      args: ["0x2966473D85A76A190697B5b9b66b769436EFE8e5", BigInt(1000000)],
     })
   } 
 
