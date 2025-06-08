@@ -20,6 +20,7 @@ contract SarCoins is Test {
         emit Transfer(address(this), 0xfc857f41a3c1d1A943E29a0b6E57c9CD6e04DFdD, 10);
         
         c.transfer(0xfc857f41a3c1d1A943E29a0b6E57c9CD6e04DFdD, 10);
+        
     }
 
     function test_DealExample() public {
