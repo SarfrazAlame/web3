@@ -13,25 +13,25 @@ function App() {
       <QueryClientProvider client={client}>
         <ConnectWallet />
         <TotalSupply />
-        <Account/>
-        <AllowUSDT/>
+        <Account />
+        <AllowUSDT />
       </QueryClientProvider>
     </WagmiProvider>
   )
 }
 
-function Account(){
-  const {address} = useAccount()
+function Account() {
+  const { address } = useAccount()
   return <div>
     {
-      address? "You are connected" + address : "You are not Connected"
+      address ? "You are connected" + address : "You are not Connected"
     }
   </div>
 }
 
 
 function TotalSupply() {
-  const {address} = useAccount()
+  const { address } = useAccount()
   const { data, isLoading, error } = useReadContract({
     address: '0xdac17f958d2ee523a2206206994597c13d831ec7',
     abi: [
@@ -54,7 +54,7 @@ function TotalSupply() {
       }
     ],
     functionName: "balanceOf",
-    args:[address?.toString() as Address]
+    args: [address?.toString() as Address]
   })
 
   if (isLoading) {
