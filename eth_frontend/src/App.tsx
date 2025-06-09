@@ -24,7 +24,33 @@ function Account() {
   const { address } = useAccount()
   return <div>
     {
-      address ? "You are connected" + address : "You are not Connected"
+      address ? "You are connected " + address : "You are not Connected"
+    }
+  </div>
+}
+
+
+
+function ConnectWallet() {
+  const { address } = useAccount()
+  const connectors = useConnectors()
+  const { disconnect } = useDisconnect()
+
+  const { connect } = useConnect()
+
+  if (address) {
+    return <div>
+      you are connected {address}
+      <button onClick={() => {
+        disconnect()
+      }}>Disconnect</button>
+    </div>
+  }
+  return <div>
+    {
+      connectors.map(connector => <button onClick={() => connect({ connector: connector })}>
+        Connect via {connector.name}
+      </button>)
     }
   </div>
 }
@@ -68,30 +94,6 @@ function TotalSupply() {
       Your USDT Balance is {data?.toString()}
     </div>
   )
-}
-
-function ConnectWallet() {
-  const { address } = useAccount()
-  const connectors = useConnectors()
-  const { disconnect } = useDisconnect()
-
-  const { connect } = useConnect()
-
-  if (address) {
-    return <div>
-      you are connected {address}
-      <button onClick={() => {
-        disconnect()
-      }}>Disconnect</button>
-    </div>
-  }
-  return <div>
-    {
-      connectors.map(connector => <button onClick={() => connect({ connector: connector })}>
-        Connect via {connector.name}
-      </button>)
-    }
-  </div>
 }
 
 export default App;
