@@ -3,7 +3,7 @@ pragma solidity ^0.8.13;
 
 import "forge-std/Test.sol";
 
-import "../src/Contract.sol";
+import "../src/StakingContract.sol";
 
 contract TestContract is Test {
     StackingContract c;
@@ -13,27 +13,27 @@ contract TestContract is Test {
     }
 
     function testStack() public {
-        uint value = 10 ether;
-        c.stack{value: value}(value);
-
-        assert(c.totalStackes() == value);
+        c.stack{value: 200}(200);
+        assert(c.balanceOf(address(this)) == 200);
     }
 
-    function testFailStack() public {
-        uint value = 10 ether;
-        c.stack(value);
+    function testStakedUser() public {
+        vm.startPrank(0xfc857f41a3c1d1A943E29a0b6E57c9CD6e04DFdD);
+        vm.deal(0xfc857f41a3c1d1A943E29a0b6E57c9CD6e04DFdD, 10 ether);
 
-        assert(c.totalStackes() == value);
+        c.stack{value: 1}(1);
+        assert(c.balanceOf(0xfc857f41a3c1d1A943E29a0b6E57c9CD6e04DFdD) == 1);
     }
 
     function testUnstack() public {
-        uint value = 10 ether;
-        vm.startPrank(0xfc857f41a3c1d1A943E29a0b6E57c9CD6e04DFdD);
-        vm.deal(0xfc857f41a3c1d1A943E29a0b6E57c9CD6e04DFdD, value);
+        c.stack{value:10}(10);
+        c.unStack(10);
 
-        c.stack{value: value}(value);
-        c.unStack(value);
-
-        assert(c.totalStackes() == 0);
+        assert(c.balanceOf(address(this)) == 0);
     }
-}
+
+    function testFailUnstack() public{
+        c.stack{value:100}(100);
+        c.unStack(200);
+    }
+}   
