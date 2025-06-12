@@ -1,20 +1,19 @@
-// SPDX-License-Identifier: GPL-3.0
+// SPDX-License-Identifier: Unlicense
+pragma solidity ^0.8.13;
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-pragma solidity >=0.7.0 <0.9.0;
-
-import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-
-contract OrcaToken is ERC20 {
+contract OrcaCoinContract is ERC20 { 
     address stakingContract;
     address owner;
-    constructor(address _stakingContract) ERC20("OrcaCoin", "ORC"){
+
+    constructor(address _stakingContract) ERC20("Orca", "ORC") {
         stakingContract = _stakingContract;
         owner = msg.sender;
     }
 
-    function mint(address _to, uint _amount) public {
+    function mint(address account, uint256 value) public {
         require(msg.sender == stakingContract);
-        _mint(_to, _amount);
+        _mint(account, value);
     }
 
     function updateStakingContract(address _stakingContract) public {
