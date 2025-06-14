@@ -1,7 +1,7 @@
 import express from 'express'
 import pg from "pg"
-import { HDNodeWallet, Wallet } from "ethers"
-import { mnemonicToSeedSync, validateMnemonic } from "bip39"
+import { HDNodeWallet } from "ethers"
+import { mnemonicToSeedSync } from "bip39"
 import { MNUENOMICS } from "./config";
 
 import { PrismaClient } from '@prisma/client'
@@ -16,7 +16,6 @@ app.use(express.json())
 app.post("/signup", async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
-
 
     const result = await prisma.binanceUser.create({
         data: {
@@ -34,19 +33,18 @@ app.post("/signup", async (req, res) => {
     const child = hdNode.derivePath(`m/44'/60'/${userId}'/0`);
 
     await prisma.binanceUser.updateMany({
-        data:{
-            depositeAddress:child.address,
-            privateKey:child.privateKey
+        data: {
+            depositeAddress: child.address,
+            privateKey: child.privateKey
         },
-        where:{
-            id:userId
+        where: {
+            id: userId
         }
     })
 
     res.json({
         userId
     })
-
 })
 
 app.get("/depositAddress", async (req, res) => {
