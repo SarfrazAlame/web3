@@ -21,7 +21,7 @@ export default function Home() {
         Create Seed Phrase
       </button>
       <SolanaWallet mnemonic={mnemonic} />
-      <EthWallet mnemonic={mnemonic} />
+      <EthWallet mnemonic={mnemonic} /> 
     </div>
 
   );
@@ -30,7 +30,6 @@ export default function Home() {
 function SolanaWallet({ mnemonic }: any) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [publicKeys, setPublicKeys] = useState<any>([]);
-
 
   return <div>
     <button onClick={function () {

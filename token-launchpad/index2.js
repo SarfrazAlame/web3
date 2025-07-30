@@ -10,6 +10,7 @@ async function main() {
     const TOTAL_BYTES = 165;
     const lamports = await connection.getMinimumBalanceForRentExemption(TOTAL_BYTES);
     const transaction = new Transaction();
+
     transaction.add(
         SystemProgram.createAccount({
             fromPubkey: payer.publicKey,
