@@ -3,6 +3,7 @@ import { WalletModalProvider, WalletMultiButton } from "@solana/wallet-adapter-r
 import Airdropsol from "./AirdropSol"
 import Model from "./Model"
 import SendToken from "./SendToken"
+import SignMessage from "../SignMessage"
 
 function App() {
   
@@ -16,9 +17,10 @@ function App() {
                 <WalletMultiButton />
                 <Model/>
               </div>
-              <div style={{ marginTop: '12px' }}>
+              <div style={{ display:'flex', flexDirection:'column',marginTop: '12px', rowGap:'12px' }}>
                 <Airdropsol />
                 <SendToken/>
+                <SignMessage/>
               </div>
             </div>
           </WalletModalProvider>

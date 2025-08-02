@@ -18,8 +18,7 @@ const Airdropsol = () => {
             <p>Airdrop sol to your account</p>
             <input type="text" name="" id="amount" placeholder='Amount...' />
             <button onClick={() => handleRequestAirdrop()}>Send</button>
-            {wallet.publicKey?.toBase58()}
-        </div>
+            </div>
     )
 }
 

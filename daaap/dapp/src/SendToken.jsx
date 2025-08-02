@@ -3,11 +3,11 @@ import { LAMPORTS_PER_SOL, PublicKey, SystemProgram, Transaction } from '@solana
 import { useState } from 'react'
 
 const SendToken = () => {
-    const [amount, setAmount] = useState(0)
-    const [address, setAddress] = useState('')
+    const [amount, setAmount] = useState()
+    const [address, setAddress] = useState()
 
-    const { connection } = useConnection()
     const wallet = useWallet()
+    const { connection } = useConnection()
     const transaction = new Transaction()
 
     async function sendToken() {
@@ -24,12 +24,16 @@ const SendToken = () => {
     }
 
     return (
-        <div>
-            <label>amount to send</label>
-            <input type="amount" placeholder='Amount...' name="" id="amount" onChange={(e) => setAmount(e.target.value)} />
-            <label>to</label>
-            <input type="text" placeholder='Address...' name="" id="to" onChange={(e) => setAddress(e.target.value)} />
-            <button onClick={() => sendToken()}>send</button>
+        <div style={{ display: 'flex', flexDirection:"column", width:'12rem', gap:"12px" }}>
+            <div>
+                <label>amount to send</label>
+                <input type="amount" placeholder='Amount...' name="" id="amount" onChange={(e) => setAmount(e.target.value)} />
+            </div>
+            <div>
+                <label>to</label>
+                <input type="text" placeholder='Address...' name="" id="to" onChange={(e) => setAddress(e.target.value)} />
+            </div>
+            <button onClick={() => sendToken()} >send</button>
         </div>
     )
 }
